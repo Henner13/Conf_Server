@@ -1,3 +1,4 @@
+**Nota:** La siguiente actividad está sacada de máquinas virtuales, y esta primera parte es una explicación de como preparamos una tarjeta de red.
 ![[dhcp_1.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_1.png)
 Para comenzar nos pondremos como usuario root:
 ```bash
@@ -34,7 +35,7 @@ ip addr show enp0s8
 ```
 
 ![[dhcp_5.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_5.png)
-## *Servicio DHCP
+## *Servicio DHCP*
 
 Para empezar este servicio es necesario primero actualizar el sistema operativo.
 ```bash
