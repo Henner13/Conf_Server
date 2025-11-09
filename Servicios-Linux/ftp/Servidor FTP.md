@@ -35,3 +35,13 @@ Una vez cambiado y guardado es muy importante reiniciar el servicio ftp para que
 ```server
 sudo systemclt restart vsftpd
 ```
+Para más fiabilidad y es personsal, yo prefiero usar los comandos:
+Parar el servicio
+```server
+sudo systemclt stop vsftpd
+```
+Y volver a encenderlo
+```server
+sudo systemclt start vsftpd
+```
+
