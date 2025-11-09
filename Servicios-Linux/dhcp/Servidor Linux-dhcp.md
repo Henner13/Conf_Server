@@ -1,4 +1,4 @@
-![[dhcp_1.png]]
+![[dhcp_1.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_1.png)
 Para comenzar nos pondremos como usuario root:
 ```bash
 sudo su
@@ -17,13 +17,13 @@ cd /etc/netplan
 ls -l
 ```
 
-![[dhcp_2.png]]
+![[dhcp_2.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_2.png)
 
 Aquí usaremos un editor como `nano` para editar el archivo 50-cloud-init.yaml.
 
-![[dhcp_3.png]]
+![[dhcp_3.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_3.png)
  Vamos a usar una 
-![[dhcp_4.png]]
+![[dhcp_4.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_4.png)
 Una vez hecho esto hay que aplicarlo con 
 ```bash
 netplan apply
@@ -33,7 +33,7 @@ Y comprobamos con
 ip addr show enp0s8
 ```
 
-![[dhcp_5.png]]
+![[dhcp_5.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_5.png)
 ## *Servicio DHCP
 
 Para empezar este servicio es necesario primero actualizar el sistema operativo.
@@ -45,17 +45,18 @@ Una vez actualizado hay que instalar el paquete del servicio DHCP
 ```bash
 sudo apt-get install isc-dchp-server
 ```
-![[dhcp_6.png]]Ahora, como lo que quiero es dar servicio DHCP con mi adaptador interno, y no con mi router, es decir, con `enp0s8` vamos a ir al siguiente directorio y listarlo .
+![[dhcp_6.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_6.png)
+Ahora, como lo que quiero es dar servicio DHCP con mi adaptador interno, y no con mi router, es decir, con `enp0s8` vamos a ir al siguiente directorio y listarlo .
 
 ```bash
 cd /etc/default
 ls -l
 ```
 
-![[dhcp_7.png]]
+![[dhcp_7.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_7.png)
 Configuraremos el archivo `isc-dhcp-server` con `nano`.
 Es muy simple, solo hay que poner nuestro nombre de interface en el tipo de IP que vayamos a usar, en nuestro caso `enp0s8`.
-![[dhcp_8.png]]
+![[dhcp_8.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_8.png)
 Pulsamos `Ctrl + X ` para guardar.
 
 Ahora lo que tenemos que hacer es configurar el servicio. Para ello vamos a ir a l directorio `dhcp`
@@ -64,9 +65,9 @@ Ahora lo que tenemos que hacer es configurar el servicio. Para ello vamos a ir a
 cd dhcp
 ls -l
 ```
-![[dhcp_9.png]]
+![[dhcp_9.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_9.png)
 Entramos en la carpeta con `nano`
-![[dhcp_10.png]]
+![[dhcp_10.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_10.png)
 Aquí habilitamos quitando `#`.
 Lo primero es indicar la subnet que vayamos a usar junto con la máscara de red.
 Después el rango sobre el que actuará nuestro servicio DHCP.
@@ -74,7 +75,7 @@ Seguido del DNS que pondremos siempre la IP de nuestro servidor para a futuro es
 
 Después el tiempo de concesión que es el tiempo en que mantiene una IP.
 Y el max es el tiempo máximo que un dispositivo tendrá la IP. (Todo en segundos)
-![[dhcp_11.png]]
+![[dhcp_11.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_11.png)
 Por último tenemos el host fantasia para establecer un IP concreta al equipo que queramos, para eso hay que poner la MAC y la IP que queramos reservar. Podemos hacerlo las veces que queramos copiando y pegando el código y cambiando los datos.
 En este caso guardamos para un cliente Ubuntu Linux la IP 192.168.100.100.
 
@@ -90,7 +91,7 @@ sudo service isc-dhcp-server status
 
 Cualquiera sirve.
 
-![[dhcp_12.png]]
+![[dhcp_12.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_12.png)
 Para evitar fallos antes usaremos los comando `stop` y `start`
 ```bash
 sudo service isc-dhcp-server stop
@@ -108,14 +109,14 @@ Si todo ha ido bien, debería salir que está activado en verde como en la image
 
 
 Comprobamos en el cliente Ubuntu que habíamos reservado la dirección 192.168.100.100
-![[dhcp_13.png]]
+![[dhcp_13.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_13.png)
 
 Demostramos que el DHCP automático está activado.
-![[dhcp_14.png]]
+![[dhcp_14.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_14.png)
 
 Ahora comprobamos con un cliente Windows 7
 Demostramos que está el servicio DHCP activado
-![[dhcp_15.png]]
+![[dhcp_15.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_15.png)
 
 Vemos que ha cogido nuestra primera IP 192.168.100.66
-![[dhcp_16.png]]
+![[dhcp_16.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dhcp/Imagenes-dhcp/dhcp_16.png)
