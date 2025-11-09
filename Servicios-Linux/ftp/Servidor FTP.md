@@ -1,5 +1,5 @@
 
-## *Servidor FTP con VSFTPD🛠️ *
+## *Servidor FTP con VSFTPD🛠️*
 
 Empezamos por instalar el servicio ftp
 
@@ -13,7 +13,7 @@ Después para arrancarlo usaremos:
 systemctl status vsftpd
 ```
 
-![[vsftpd-activo.png]]
+![[vsftpd-activo.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/ftp/Imagenes-ftp/vsftpd-activo.png)
 
 En caso de fallo y que no nos salga activo 
 ```server
@@ -29,7 +29,7 @@ sudo nano /etc/vsftpd.conf
 
 Ahora es muy simple, buscamos la línea `write_enable=YES` y la descomentamos (quitando #).
 
-![[etc-vsftpd.conf.png]]
+![[etc-vsftpd.conf.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/ftp/Imagenes-ftp/etc-vsftpd.conf.png)
 Una vez cambiado y guardado es muy importante reiniciar el servicio ftp para que se vean los cambios 
 
 ```server
