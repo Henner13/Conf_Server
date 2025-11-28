@@ -7,7 +7,7 @@ sudo apt install bind9
 ```
 `Nota: En las imagenes no uso sudo porque estoy como usuario root`
 
-![[dns2.png]]
+![[dns2.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns2.png)
 Una vez instalado se creará un nuevo directorio llamado `bind`.
 Para llegar a ella usaremos
 ```shell
@@ -18,26 +18,27 @@ Y comprobaremos todos los archivos que tenemos.
 ls -l
 ```
 
-![[dns3.png]]Primero entraremos en archivo con nuestro editor de texto `named.conf.options`
+![[dns3.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns3.png)
+Primero entraremos en archivo con nuestro editor de texto `named.conf.options`
 
-![[dns4.png]]
+![[dns4.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns4.png)
 Este archivo lo usaremos para añadir servidores DNS externos.
 
 Por ejemplo para añadir el DNS de google.
-![[dns5.png]]
+![[dns5.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns5.png)
 
 El ejemplo anterior se usará para trabajar con redes externas.
 
 Para trabajar con redes internas empezaremos con `named.conf.default-zones`
 
-![[dns6.png]]
+![[dns6.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns6.png)
 Aquí no vamos a tocar nada de la configuración pero es importante saber como se estructura ya que más adelante la vamos a utilizar ya que es la base.
 
 Ahora iremos al primer archivo que tendremos que modificar que es `named.conf.local`
 
-![[dns7.png]]
+![[dns7.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns7.png)
 Aquí vamos a generar dominios, dando de alta tantas zonas como quiera.
-![[dns8.png]]
+![[dns8.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns8.png)
 primero indicamos la zona en este caso `prueba.com`
 Después es importante tabular y seguir la estructura correcta porque si no nos dará fallos.
 En la parte de `file` siempre indicaremos la ruta `/etc/bind/db.nombredezona` en este caso sería `/etc/bind/db.pruebacom`
@@ -57,13 +58,13 @@ cp /etc/bind/db.local /etc/bind/db.pruebacom
 ```
 También podríamos copiar en su defecto y por seguridad el archivo `db.empty` , al fin y al cabo es la misma estructura.
 
-![[dns10.png]]
+![[dns10.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns10.png)
 
 Ahora vamos a terminar nuestra configuración, explicando paso a paso que debemos cambiar y por qué.
 
-![[dns11.png]]
+![[dns11.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns11.png)
 
-![[dns12.png]]
+![[dns12.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns12.png)
 Empezaremos cambiando el nombre de `localhost` añadiendo `ns.` que significa  `nombre de registro` y cambiando `localhost` por el nombre de dominio que hayamos elegido, en este caso `prueba.com`. Podemos observar que termina en punto, es MUY importante que no se elimine o puede dar fallos ya que concatena con el `ns` que hace referencia al nombre de registro dentro de la zona que hemos creado anteriormente.
 
 Seguido, por seguridad cambiaremos la palabra `root` por `admin` o el nombre que queramos y volveremos a poner nuestro nombre de dominio `prueba.com` y otra vez acabado en punto, no lo olvidemos.
@@ -91,7 +92,7 @@ service bind9 start
 service bind9 status
 ```
 
-![[dns13.png]]
+![[dns13.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns13.png)
 Si todo nos sale habilitado como en la imagen de arriba no deberíamos tener problemas con nuestro servicio de DNS interno.
 
 
@@ -100,12 +101,12 @@ Y en el cliente, en mi caso un Ubuntu 24.10 con el comando
 nslookup www.prueba.com
 ```
 
-![[dns14.png]]
+![[dns14.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns14.png)
 También podemos usar para ver los servidores de NS:
 ```shell
 dig www.prueba.com NS
 ```
 
-![[dns15.png]]
+![[dns15.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/dns/Imagenes-dns/dns15.png)
 
 En caso de fallo habría que comprobar con un `ping` para ver si hay conexión entre nuestro cliente y servidor, que muchas veces es el principal problema.
