@@ -13,7 +13,7 @@ Después para arrancarlo usaremos:
 sudo systemctl status vsftpd
 ```
 
-![[vsftpd-activo.png]]
+![[vsftpd-activo.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/ftp/Imagenes-ftp/vsftpd-activo.png)
 
 En caso de fallo y que no nos salga activo 
 ```server
@@ -29,8 +29,8 @@ sudo nano /etc/vsftpd.conf
 
 Ahora es muy simple, buscamos la línea `write_enable=YES` `chroot_local_user=YES`, `chroot_list_enable=YES` y `chroot_list_file=/etc/vsftpd.chroot_list` y las descomentamos (quitando #).
 
-![[write_yes.png]]
-![[chroot_local.png]]
+![[write_yes.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/ftp/Imagenes-ftp/write_yes.png)
+![[chroot_local.png]](https://github.com/Henner13/Conf_Server/blob/main/Servicios-Linux/ftp/Imagenes-ftp/chroot_local.png)
 * `chroot_local_user` : con esto indicamos que solo puedan acceder usuarios dentro del dominio
 * `chroot_list_enable` : habilita la lista de usuarios que pueden acceder a ftp
 * `chroot_list_file`: Indicamos donde y como se llama la lista de usuarios permitidos.
